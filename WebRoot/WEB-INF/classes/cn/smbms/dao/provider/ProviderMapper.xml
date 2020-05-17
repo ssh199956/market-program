@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.smbms.dao.provider.ProviderMapper">
+
+	<!-- 获取供应商列表 -->
+	<select id="getProviderList" resultType="Provider">
+		select * from smbms_provider where 1=1
+		<if test="proName!=null and proName!=''">
+			and proName like CONCAT('%',#{proName},'%')
+		</if>
+		<if test="proCode!=null and proCode!=''">
+			and proCode like CONCAT('%',#{proCode},'%')
+		</if>
+	</select>
+
+	<!-- 获取指定ID供应商信息 -->
+	<select id="getProviderById" resultType="Provider">
+		select * from
+		smbms_provider where id=#{id}
+	</select>
+
+	<!-- 添加供应商信息 -->
+	<insert id="add" parameterType="Provider">
+		insert into smbms_provider
+		(
+		proCode,proName,proDesc,proContact,proPhone,proAddress,proFax,createdBy,creationDate
+		)
+		values
+		(
+		#{p.proCode},#{p.proName},#{p.proDesc},#{p.proContact},#{p.proPhone},
+		#{p.proAddress},#{p.proFax},#{p.createdBy},#{p.creationDate}
+		)
+	</insert>
+
+	<!-- 删除指定ID供应商信息 -->
+	<delete id="deleteProviderById" parameterType="String">
+		delete from smbms_provider where id=#{delId}
+	</delete>
+
+
+	<!-- 修改指定ID供应商信息 -->
+	<update id="modify" parameterType="Provider">
+		update
+		smbms_provider set
+		proName=#{p.proName},proDesc=#{p.proDesc},proContact=#{p.proContact},
+		proPhone=#{p.proPhone},proAddress=#{p.proAddress},proFax=#{p.proFax},
+		modifyBy=#{p.modifyBy},modifyDate=#{p.modifyDate} where id =#{p.id}
+	</update>
+</mapper>
