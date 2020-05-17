@@ -8,7 +8,10 @@ this is my program of market system
 密码admin
 
 
-个人主站：www.sshlearning.com
-博客：blog.sshlearning.com
-大数据学习：data.sshlearning.com
+个人主站：https://www.sshlearning.com
+
+博客：https://blog.sshlearning.com
+
+大数据学习：https://data.sshlearning.com
+
 微信公众号：IT编程学习栈
